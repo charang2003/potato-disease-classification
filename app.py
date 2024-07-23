@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, jsonify, render_template
+from flask_app import Flask, request, jsonify, render_template
 import tensorflow as tf
 from tensorflow.keras.preprocessing import image
 import numpy as np
