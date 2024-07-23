@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask_app import Flask, request, jsonify
 import tensorflow as tf
 from tensorflow.keras.preprocessing import image
 import numpy as np
@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 # Load the trained model
 model_version = 2
-model_path = f'C:/New folder/VScode/python/potato-disease-classification/models/1.keras'
+model_path = f'C:/New folder/VScode/python/potato-disease-classification/models/2.keras'
 model = tf.keras.models.load_model(model_path)
 
 # Class names
