@@ -1,19 +1,18 @@
-import os
 from flask import Flask, request, jsonify, render_template
 import tensorflow as tf
 from tensorflow.keras.preprocessing import image
 import numpy as np
+import os
 
-# Initialize the Flask app
 app = Flask(__name__)
 
 # Load the trained model
 model_version = 2
-model_path = os.path.join('app/models', f'{model_version}.keras')
+model_path = f'C:/New folder/VScode/python/potato-disease-classification/models/{model_version}.keras'
 model = tf.keras.models.load_model(model_path)
 
-# Class names (replace with your actual class names)
-class_names = ['Early Blight', 'Late Blight', 'Healthy']
+# Class names
+class_names = ['Early Blight', 'Late Blight', 'Healthy']  # Replace with your actual class names
 
 def preprocess_image(img_path):
     img = image.load_img(img_path, target_size=(256, 256))
@@ -23,7 +22,7 @@ def preprocess_image(img_path):
     return img_array
 
 @app.route('/')
-def index():
+def home():
     return render_template('index.html')
 
 @app.route('/predict', methods=['POST'])
@@ -43,7 +42,7 @@ def predict():
     # Clean up
     os.remove(img_path)
 
-    return jsonify({'predicted_class': predicted_class, 'confidence': confidence})
+    return render_template('result.html', predicted_class=predicted_class, confidence=confidence)
 
 if __name__ == '__main__':
     # Ensure the uploads directory exists

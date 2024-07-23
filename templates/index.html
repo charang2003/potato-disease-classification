@@ -4,32 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Potato Disease Classification</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Potato Disease Classification</h1>
-    <form id="uploadForm" enctype="multipart/form-data">
-        <label for="imageUpload">Upload an image:</label>
-        <input type="file" id="imageUpload" name="image" accept="image/*" required>
-        <button type="submit">Classify</button>
-    </form>
-    <div id="result"></div>
-
-    <script>
-        document.getElementById('uploadForm').addEventListener('submit', async (event) => {
-            event.preventDefault();
-
-            const formData = new FormData();
-            const imageFile = document.getElementById('imageUpload').files[0];
-            formData.append('image', imageFile);
-
-            const response = await fetch('/predict', {
-                method: 'POST',
-                body: formData,
-            });
-
-            const result = await response.json();
-            document.getElementById('result').innerText = `Predicted class: ${result.predicted_class} with confidence: ${result.confidence}%`;
-        });
-    </script>
+    <div class="container">
+        <h1>Potato Disease Classification</h1>
+        <form action="/predict" method="post" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*" required>
+            <button type="submit">Upload and Predict</button>
+        </form>
+    </div>
 </body>
 </html>
