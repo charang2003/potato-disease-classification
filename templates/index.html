@@ -4,15 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Potato Disease Classification</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <div class="container">
         <h1>Potato Disease Classification</h1>
-        <form action="/predict" method="post" enctype="multipart/form-data">
-            <input type="file" name="image" accept="image/*" required>
-            <button type="submit">Upload and Predict</button>
+        <form id="upload-form" action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data">
+            <input type="file" id="image" name="image" accept="image/*" required>
+            <button type="submit" class="btn">Predict</button>
         </form>
+        <div id="result"></div>
     </div>
+    <script>
+        document.getElementById("upload-form").onsubmit = async function(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const response = await fetch(event.target.action, {
+                method: 'POST',
+                body: formData
+            });
+            if (response.ok) {
+                const result = await response.json();
+                document.getElementById("result").innerHTML = 
+                    `<p>Predicted Class: ${result.predicted_class}</p>
+                    <p>Confidence: ${result.confidence}%</p>`;
+            } else {
+                const error = await response.json();
+                document.getElementById("result").innerHTML = 
+                    `<p>Error: ${error.error}</p>`;
+            }
+        };
+    </script>
 </body>
 </html>

@@ -3,8 +3,12 @@ import tensorflow as tf
 from tensorflow.keras.preprocessing import image
 import numpy as np
 import os
+import logging
 
 app = Flask(__name__)
+
+# Configure logging
+logging.basicConfig(level=logging.DEBUG)
 
 # Load the trained model
 model_version = 2
@@ -15,6 +19,7 @@ model = tf.keras.models.load_model(model_path)
 class_names = ['Early Blight', 'Late Blight', 'Healthy']  # Replace with your actual class names
 
 def preprocess_image(img_path):
+    logging.debug(f"Preprocessing image at path: {img_path}")
     img = image.load_img(img_path, target_size=(256, 256))
     img_array = image.img_to_array(img)
     img_array = tf.expand_dims(img_array, 0)  # Create a batch dimension
@@ -22,17 +27,19 @@ def preprocess_image(img_path):
     return img_array
 
 @app.route('/')
-def home():
+def index():
     return render_template('index.html')
 
 @app.route('/predict', methods=['POST'])
 def predict():
     if 'image' not in request.files:
+        logging.error("No image uploaded")
         return jsonify({'error': 'No image uploaded'}), 400
 
     img_file = request.files['image']
     img_path = os.path.join('uploads', img_file.filename)
     img_file.save(img_path)
+    logging.debug(f"Image saved to: {img_path}")
 
     img_array = preprocess_image(img_path)
     predictions = model.predict(img_array)
@@ -41,8 +48,9 @@ def predict():
 
     # Clean up
     os.remove(img_path)
+    logging.debug(f"Prediction: {predicted_class}, Confidence: {confidence}%")
 
-    return render_template('result.html', predicted_class=predicted_class, confidence=confidence)
+    return jsonify({'predicted_class': predicted_class, 'confidence': confidence})
 
 if __name__ == '__main__':
     # Ensure the uploads directory exists
