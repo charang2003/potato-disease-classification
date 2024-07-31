@@ -8,11 +8,10 @@ app = Flask(__name__)
 
 # Load the trained model
 model_version = 2
-model_path = f'C:/New folder/VScode/python/potato-disease-classification/models/2.keras'
+model_path = f'C:/New folder/VScode/python/potato-disease-classification/models/model_v1.h5'
 model = tf.keras.models.load_model(model_path)
 
-# Class names
-class_names = ['Early Blight', 'Late Blight', 'Healthy']  # Replace with your actual class names
+class_names = ['early', 'early_potato', 'early_plant']
 
 def preprocess_image(img_path):
     img = image.load_img(img_path, target_size=(256, 256))
