@@ -1,0 +1,3 @@
+Download Dataset : https://www.kaggle.com/ashokkumarpalivela/potato-diseases
+or
+https://www.kaggle.com/datasets/arjuntejaswi/plant-village
