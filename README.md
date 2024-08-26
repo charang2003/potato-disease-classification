@@ -25,7 +25,7 @@ This project involves the development of a convolutional neural network (CNN) to
 
 The user interface (UI) of this potato disease classification project is designed to be intuitive and user-friendly, allowing users to easily upload images and receive predictions.
 
-- **User Interface**: <img src="images-md\early.png" alt="User Interface" width="500" />
+- **User Interface**: ![User Interface](images-md\early.png)
 
 ## Problem Statement
 
@@ -130,17 +130,17 @@ The model was tested on a separate dataset to evaluate its performance in classi
 1. **Prediction**: Early Blight
 
 - **Confidence**: 99%
-- **Image**: <img src="images-md\early.png" alt="Image" width="500" />
+- **Image**: ![Image](images-md\early.png)
 
 2. **Prediction**: Late Blight
 
 - **Confidence**: 92%
-- **Image**: <img src="images-md\late.png" alt="Image" width="500" />
+- **Image**: ![Image](images-md\late.png)
 
 3. **Prediction**: Healthy
 
 - **Confidence**: 100%
-- **Image**: <img src="images-md\healthy.png" alt="Image" width="500" />
+- **Image**: ![Image](images-md\healthy.png)
 
 ### Model Performance Metrics
 
