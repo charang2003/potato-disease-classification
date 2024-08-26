@@ -1,6 +1,6 @@
 # Potato Disease Classification using CNN
 
-A brief description of what this project does and who it's for
+This repository contains the code for a Potato Disease Classification API built using TensorFlow and FastAPI. The API is designed to classify potato leaf images into three categories: Early Blight, Late Blight, and Healthy. The model is deployed using FastAPI and can be accessed via a simple RESTful interface.
 
 ## Table of Contents
 
@@ -20,6 +20,12 @@ A brief description of what this project does and who it's for
 ## Overview
 
 This project involves the development of a convolutional neural network (CNN) to classify potato plant diseases into three categories: Early Blight, Late Blight, and Healthy. The model aims to assist farmers and agronomists in early detection of these diseases through image classification, potentially improving crop management and yield.
+
+## User Interface
+
+The user interface (UI) of this potato disease classification project is designed to be intuitive and user-friendly, allowing users to easily upload images and receive predictions.
+
+- **User Interface**: <img src="images-md\early.png" alt="User Interface" width="500" />
 
 ## Problem Statement
 
@@ -123,18 +129,18 @@ The model was tested on a separate dataset to evaluate its performance in classi
 
 1. **Prediction**: Early Blight
 
-- **Confidence**: 95.4%
-- **Image**:
+- **Confidence**: 99%
+- **Image**: <img src="images-md\early.png" alt="Image" width="500" />
 
 2. **Prediction**: Late Blight
 
-- **Confidence**: 95.4%
-- **Image**:
+- **Confidence**: 92%
+- **Image**: <img src="images-md\late.png" alt="Image" width="500" />
 
 3. **Prediction**: Healthy
 
-- **Confidence**: 95.4%
-- **Image**:
+- **Confidence**: 100%
+- **Image**: <img src="images-md\healthy.png" alt="Image" width="500" />
 
 ### Model Performance Metrics
 
